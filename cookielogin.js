@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 2410;
 app.use(cors());
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://cookie-90uc.onrender.com");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Credentials", "true"); 
@@ -24,7 +24,7 @@ app.use((req, res, next) => {
     date: DateTime.now().toFormat("yyyy-MM-dd HH:mm:ss"),
   });
 
-  res.cookie("tracker", trackerData, { httpOnly: true, sameSite: 'none', secure: true });
+  res.cookie("tracker", trackerData, {httpOnly:false, sameSite: 'none', secure: true });
   next();
 });
 
