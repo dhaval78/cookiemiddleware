@@ -4,14 +4,21 @@ const cookieParser = require("cookie-parser");
 const { DateTime } = require("luxon");
 const app = express();
 const port = process.env.PORT || 2410;
-app.use(cors());
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://cars1-1e80c.web.app");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Credentials", "true"); 
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "https://cars1-1e80c.web.app");
+//   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   res.header("Access-Control-Allow-Credentials", "true"); 
+//   next();
+// });
+const corsOptions = {
+  origin: 'https://cars1-1e80c.web.app',
+  methods: 'GET, PUT, POST, DELETE',
+  allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use((req, res, next) => {
