@@ -208,8 +208,8 @@ app.post("/login", function (req, res) {
     (employee) => employee.empCode === Number(empCode) && employee.name === name
   );
   if (user) {
-    res.cookie("empCode", empCode);
-    res.cookie("name",name);
+    res.cookie("empCode", empCode,{sameSite: 'none',secure:true});
+    res.cookie("name",name,{sameSite:'none',secure:true});
     res.json({ message: "Login successful" });
   } else {
     res.status(401).json({ error: "Login failed" });
