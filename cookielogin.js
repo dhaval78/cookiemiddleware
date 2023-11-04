@@ -31,7 +31,7 @@ app.use((req, res, next) => {
     date: DateTime.now().toFormat("yyyy-MM-dd HH:mm:ss"),
   });
 
-  res.cookie("tracker", trackerData, {httpOnly:false, sameSite: 'none', secure: true });
+  res.cookie("tracker", trackerData, {httpOnly:true, sameSite: 'none', secure: true });
   next();
 });
 
